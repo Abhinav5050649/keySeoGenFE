@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect, Route } from "react-router-dom";
+import { Navigate, Route } from "react-router-dom";
 
 function ProtectedRoute({ component: Component, ...restOfProps }) {
   const isAuthenticated = sessionStorage.getItem("isAuthenticated");
@@ -9,7 +9,7 @@ function ProtectedRoute({ component: Component, ...restOfProps }) {
     <Route
       {...restOfProps}
       render={(props) =>
-        isAuthenticated ? <Component {...props} /> : <Redirect to="/" />
+        isAuthenticated ? <Component {...props} /> : <Navigate to="/" />
       }
     />
   );
