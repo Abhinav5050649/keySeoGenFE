@@ -5,18 +5,32 @@ export const Register = () => {
     return(
         <>
             <Navbar/>
-            <div className='form-container' style={{marginTop: '15%', marginLeft: '40%', textAlign: 'center', width:'20%', border: 'solid', borderRadius: '10%'}}>
-                <form>
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+            <div className="container mt-5">
+                <div className="row justify-content-center" style={{marginTop: '15%', marginInline: '5%'}}>
+                    <div className="col-md-6">
+                        <div className="card" style={{backgroundColor: '#F5F5DC', border: 'solid', borderColor: '#004225', width: '85%'}}>
+                            <div className="card-header" style={{color: '#004225'}}>
+                                <h3>Login/Signup</h3>
+                            </div>
+                            <div className="card-body">
+                                <form>
+                                    <div className="mb-3">
+                                        <label htmlFor="email" className="form-label" style={{color: '#004225'}}><strong>Email</strong></label>
+                                        <input type="email" className="form-control" id="email" placeholder="Enter your email"/>
+                                    </div>
+                                    <div className="mb-3">
+                                        <label htmlFor="password" className="form-label" style={{color: '#004225'}}><strong>Password</strong></label>
+                                        <input type="password" className="form-control" id="password" placeholder="Enter your password" />
+                                    </div>
+                                    <div className="d-grid gap-2">
+                                        <button type="submit" className="btn" style={{color: '#004225', border: 'solid', borderColor: '#004225'}}><strong>Login</strong></button>
+                                        <button type="submit" className="btn" style={{color: '#004225', border: 'solid', borderColor: '#004225'}}><strong>Signup</strong></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1"/>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+                </div>
             </div>
         </>
     )
