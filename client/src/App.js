@@ -8,7 +8,7 @@ import Generate from './pages/generate';
 import Both from './pages/both';
 
 function App() {
-  //if (!sessionStorage.getItem('isTokenPresent')){
+  if (!sessionStorage.getItem('isTokenPresent')){
     return (
       <div className="App">
         <BrowserRouter>
@@ -19,19 +19,18 @@ function App() {
         </BrowserRouter>
       </div>
     );
-  // }else{
-  //   return(
-  //     <div className="App">
-  //       <BrowserRouter>
-  //         <Routes>
-  //           <Route path='/' element={<Scrape/>}></Route>
-  //           <Route path='/generate' element={<Generate/>}></Route>
-  //           <Route path='/both' element={<Both/>}></Route>
-  //         </Routes>
-  //       </BrowserRouter>
-  //     </div>
-  //   )
-  // }
+  }else{
+    return(
+      <div className="App">
+        <BrowserRouter>
+          <Routes>
+            <Route path='/scrape' element={<Scrape/>}></Route>
+            <Route path='/generate' element={<Generate/>}></Route>
+          </Routes>
+        </BrowserRouter>
+      </div>
+    )
+  }
 }
 
 export default App;

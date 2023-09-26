@@ -1,7 +1,49 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Navbar from '../components/Navbar';
+import axios from 'axios';
+import {useNavigate} from "react-router-dom";
 
 export const Register = () => {
+    let navigate = useNavigate();
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const registerData = {
+        email: email,
+        password: password,
+    };
+
+    const handleLogin = async(e) => {
+        axios.post('http://localhost:5002/login', registerData)
+        .then(response => {
+            console.log('Login successful');
+            //console.log(response.data); 
+            if (response.data.message)
+                sessionStorage.setItem('isTokenPresent', true);
+            navigate("/scrape");
+        })
+        .catch(error => {
+            console.error('Login failed');
+            console.error(error.response.data);
+        });
+    }
+
+    const handleSignup = async(e) => {
+        axios.post('http://localhost:5002/signup', registerData)
+        .then(response => {
+            console.log('Signup successful');
+            //console.log(response.data); 
+            if (response.data.message)
+                sessionStorage.setItem('isTokenPresent', true);
+            navigate("/scrape");
+        })
+        .catch(error => {
+            console.error('Signup failed');
+            console.error(error.response.data);
+        });
+    }
+
     return(
         <>
             <Navbar/>
@@ -16,15 +58,15 @@ export const Register = () => {
                                 <form>
                                     <div className="mb-3">
                                         <label htmlFor="email" className="form-label" style={{color: '#004225'}}><strong>Email</strong></label>
-                                        <input type="email" className="form-control" id="email" placeholder="Enter your email"/>
+                                        <input type="email" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} id="email" placeholder="Enter your email" required={true}/>
                                     </div>
                                     <div className="mb-3">
                                         <label htmlFor="password" className="form-label" style={{color: '#004225'}}><strong>Password</strong></label>
-                                        <input type="password" className="form-control" id="password" placeholder="Enter your password" />
+                                        <input type="password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} id="password" placeholder="Enter your password" required={true}/>
                                     </div>
                                     <div className="d-grid gap-2">
-                                        <button type="submit" className="btn" style={{color: '#004225', border: 'solid', borderColor: '#004225'}}><strong>Login</strong></button>
-                                        <button type="submit" className="btn" style={{color: '#004225', border: 'solid', borderColor: '#004225'}}><strong>Signup</strong></button>
+                                        <button type="submit" className="btn" onClick={handleLogin} style={{color: '#004225', border: 'solid', borderColor: '#004225'}}><strong>Login</strong></button>
+                                        <button type="submit" className="btn" onClick={handleSignup} style={{color: '#004225', border: 'solid', borderColor: '#004225'}}><strong>Signup</strong></button>
                                     </div>
                                 </form>
                             </div>
