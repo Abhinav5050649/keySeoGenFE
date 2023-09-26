@@ -5,7 +5,6 @@ import Home from './pages/home';
 import Register from './pages/register';
 import Scrape from './pages/scrape';
 import Generate from './pages/generate';
-import Both from './pages/both';
 
 function App() {
   if (!sessionStorage.getItem('isTokenPresent')){

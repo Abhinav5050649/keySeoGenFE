@@ -2,9 +2,11 @@ import React, {useState} from 'react';
 import Navbar from '../components/Navbar';
 import axios from 'axios';
 import {useNavigate} from "react-router-dom";
+//import { useHistory } from 'react-router-dom';
 
 export const Register = () => {
     let navigate = useNavigate();
+    //let history = useHistory();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -17,10 +19,13 @@ export const Register = () => {
     const handleLogin = async(e) => {
         axios.post('http://localhost:5002/login', registerData)
         .then(response => {
+            e.preventDefault();
             console.log('Login successful');
             //console.log(response.data); 
             if (response.data.message)
                 sessionStorage.setItem('isTokenPresent', true);
+            
+            //history.push('/scrape');
             navigate("/scrape");
         })
         .catch(error => {
@@ -32,10 +37,13 @@ export const Register = () => {
     const handleSignup = async(e) => {
         axios.post('http://localhost:5002/signup', registerData)
         .then(response => {
+            e.preventDefault();
             console.log('Signup successful');
             //console.log(response.data); 
             if (response.data.message)
                 sessionStorage.setItem('isTokenPresent', true);
+
+            //history.push('/scrape');
             navigate("/scrape");
         })
         .catch(error => {
