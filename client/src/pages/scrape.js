@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios'; // You'll need Axios for making POST requests
+import axios from 'axios';
 import { Bar } from 'react-chartjs-2';
-import DashNav from '../components/DashNav';
+import Navbar from '../components/Navbar';
 
 export const Scrape = () => {
 
@@ -15,9 +15,8 @@ export const Scrape = () => {
     };
     
     const handleButtonClick = async(e) => {
-        axios.post('http://localhost:5002/keywords', dataBody)
+        axios.post('http://localhost:5002/api/search/keywords', dataBody)
         .then(thisresponse => {
-            //add content
             setData(thisresponse);
         })
         .catch(error => {
@@ -27,7 +26,7 @@ export const Scrape = () => {
 
     return(
         <>
-            <DashNav />
+            <Navbar />
             <div className='box1'>
                 <div className='box11'>
                     <input

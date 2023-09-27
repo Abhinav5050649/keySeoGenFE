@@ -7,29 +7,29 @@ import Scrape from './pages/scrape';
 import Generate from './pages/generate';
 
 function App() {
-  if (!sessionStorage.getItem('isTokenPresent')){
+  //if (!sessionStorage.getItem('isTokenPresent')){
     return (
       <div className="App">
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<Home/>}></Route>
             <Route path='/register' element={<Register/>}></Route>
-          </Routes>
-        </BrowserRouter>
-      </div>
-    );
-  }else{
-    return(
-      <div className="App">
-        <BrowserRouter>
-          <Routes>
             <Route path='/scrape' element={<Scrape/>}></Route>
             <Route path='/generate' element={<Generate/>}></Route>
           </Routes>
         </BrowserRouter>
       </div>
-    )
-  }
+    );
+  // }else{
+  //   return(
+  //     <div className="App">
+  //       <BrowserRouter>
+  //         <Routes>
+  //         </Routes>
+  //       </BrowserRouter>
+  //     </div>
+  //   )
+  // }
 }
 
 export default App;

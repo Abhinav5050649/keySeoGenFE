@@ -17,16 +17,14 @@ export const Register = () => {
     };
 
     const handleLogin = async(e) => {
-        axios.post('http://localhost:5002/login', registerData)
+        axios.post('http://localhost:5002/api/auth/login', registerData)
         .then(response => {
             e.preventDefault();
             console.log('Login successful');
-            //console.log(response.data); 
-            if (response.data.message)
+            if (response.data.message){
                 sessionStorage.setItem('isTokenPresent', true);
-            
-            //history.push('/scrape');
-            navigate("/scrape");
+                response.redirect("/scrape");
+            }
         })
         .catch(error => {
             console.error('Login failed');
@@ -35,16 +33,15 @@ export const Register = () => {
     }
 
     const handleSignup = async(e) => {
-        axios.post('http://localhost:5002/signup', registerData)
+        axios.post('http://localhost:5002/api/auth/signup', registerData)
         .then(response => {
             e.preventDefault();
             console.log('Signup successful');
             //console.log(response.data); 
-            if (response.data.message)
+            if (response.data.message){
                 sessionStorage.setItem('isTokenPresent', true);
-
-            //history.push('/scrape');
-            navigate("/scrape");
+                response.redirect("/scrape");
+            }
         })
         .catch(error => {
             console.error('Signup failed');
