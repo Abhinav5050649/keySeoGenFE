@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { Bar } from 'react-chartjs-2';
-import Navbar from '../components/Navbar';
+import React from 'react';
+import DashNav from '../components/DashNav';
+import { useNavigate } from 'react-router-dom';
 
 export const Generate = () => {
+    let navigate = useNavigate();
+
+    //if (!localStorage.getItem('isTokenPresent'))    navigate("/")
+    
     return(
-        <>
-            <Navbar/>
-        </>
+            <div>
+                <p>hello</p>
+            </div>
     )
 }
 

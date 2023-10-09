@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Bar } from 'react-chartjs-2';
-import Navbar from '../components/Navbar';
+import DashNav from '../components/DashNav';
+import { useNavigate } from 'react-router-dom';
 
 export const Scrape = () => {
 
@@ -10,12 +11,16 @@ export const Scrape = () => {
     const [response, setResponse] = useState('');
 
     const dataBody = {"search_obj": inputValue}
+
+    let navigate = useNavigate();
+    //if (!localStorage.getItem('isTokenPresent'))    navigate("/")
+
     const handleInputChange = (e) => {
         setInputValue(e.target.value);
     };
-    
+
     const handleButtonClick = async(e) => {
-        axios.post('http://localhost:5002/api/search/keywords', dataBody)
+        axios.post('http://localhost:5000/api/search/keywords', dataBody)
         .then(thisresponse => {
             setData(thisresponse);
         })
@@ -25,8 +30,6 @@ export const Scrape = () => {
     };
 
     return(
-        <>
-            <Navbar />
             <div className='box1'>
                 <div className='box11'>
                     <input
@@ -50,7 +53,6 @@ export const Scrape = () => {
                     )}
                 </div>
             </div>
-        </>
     )
 }
 
